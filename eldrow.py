@@ -6,9 +6,11 @@ if guess == "SNAKE":
 else:
     print("Wrong") """
 
+WORD = "SNAKE"
+
 for guess_num in range(1, 7):
     guess = input(f"\nGuess {guess_num}: ").upper()
-    if guess == "SNAKE":
+    if guess == WORD:
         print("Correct")
         break
 
