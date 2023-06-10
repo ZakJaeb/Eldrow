@@ -4,21 +4,16 @@ import pathlib
 import random
 from string import ascii_letters
 
-WORDLIST = pathlib.Path("wordlist.txt")
+def get_random_word():
+    WORDLIST = pathlib.Path("wordlist.txt").parent
+    words = [
+        word.upper()
+        for word in WORDLIST.read_text(encoding="utf-8").split("\n")
+        if len(word) == 5 and all(letter in ascii_letters for letter in word)
+    ]
+    return random.choice(words)
 
-words = [
-    word.upper()
-    for word in WORDLIST.read_text(encoding="utf-8").split("\n")
-    if len(word) == 5 and all(letter in ascii_letters for letter in word)
-]
-word = random.choice(words)
-
-for guess_num in range(1, 7):
-    guess = input(f"\nGuess {guess_num}: ").upper()
-    if guess == word:
-        print("Correct")
-        break
-
+def show_guess(guess, word):
     correct_letters = {
         letter for letter, correct in zip(guess, word) if letter == correct
     }
@@ -29,9 +24,9 @@ for guess_num in range(1, 7):
     print("Misplaced letters:", ", ".join(sorted(misplaced_letters)))
     print("Wrong letters:", ", ".join(sorted(wrong_letters)))
 
-else:
+def game_over(word):
     print(f"The word was {word}")
-
+    
 def main():
     # Pre-process
     word = get_random_word(...)
@@ -43,6 +38,7 @@ def main():
         show_guess(...)
         if guess == word:
             break
+
     # Post-process
     else
         game_over(...)
