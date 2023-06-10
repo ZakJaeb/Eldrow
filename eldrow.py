@@ -29,18 +29,18 @@ def game_over(word):
     
 def main():
     # Pre-process
-    word = get_random_word(...)
+    word = get_random_word()
 
     # Process (main loop)
     for guess_num in range(1, 7):
         guess = input(f"\nGuess {guess_num}: ").upper()
 
-        show_guess(...)
+        show_guess(guess, word)
         if guess == word:
             break
 
     # Post-process
     else
-        game_over(...)
+        game_over(word)
 
 
